@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2007 (http://www.altova.com) by gaohui (EMBRACE) -->
+<!--
+accesstypes: 所有操作类型
+accesstype:一种具体的操作类型标签
+type: 操作类型名称
+desc: 说明性文字
+
+oper; 每种操作类型能够进行操作的说明。一个资源的操作权限我们用一个long型的数表示，每一位表示一种可能的操作，
+        如果该位为1则表示具有此类操作权限，如果为零则没有，一个资源最多允许定义62种操作
+id: 每种操作的编号
+operand: 操作位的含义，2^operand 应用系统预先定义每个权限位的含义。在从4A系统取得资源权限的int型数据时，再根据此定义解析出用户权限。
+desc: 每个操作的文字性说明。
+relies: 被依赖操作,当被依赖操作未被选中时,不能选中当前操作.
+
+properties : 权限点属性列表
+property ： 权限点属性
+id : 权限点属性ID
+name: 权限点属性名称
+-->
+
+<access>
+	<accesstypes>
+		<accesstype type="validity" desc="是否有效">
+			<oper id="P001" operand="0" desc="是否可见" relies=""/>
+		</accesstype>
+		
+		<accesstype type="testv" desc="是否可删除考核记录">
+			<oper id="P002" operand="1" desc="删除记录" relies=""/>
+			<oper id="P003" operand="2" desc="是否可见" relies=""/>
+		</accesstype>
+	</accesstypes>
+</access>

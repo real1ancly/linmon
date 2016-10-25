@@ -1,0 +1,34 @@
+package com.ultrapower.assess.web.ajax;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+
+import com.ultrapower.accredit.common.value.User;
+import com.ultrapower.accredit.rmiclient.RmiClientApplication;
+
+@SuppressWarnings("unchecked")
+public class AssessObjAjax {
+
+	private RmiClientApplication rmi = RmiClientApplication.getInstance();
+
+	public String getUserById(String deptid) {
+		List<User> userlit = null;
+		List tree = new ArrayList();
+		try {
+			userlit = rmi.getSecurityService().getUserByOrgId(deptid);
+			if (userlit != null) {
+				for (int i = 0; i < userlit.size(); i++) {
+					User u = userlit.get(i);
+					tree.add("{id:'" + u.getDeptID() + "' , pId:'" + u.getUserID() + "' , name:'" + u.getUserName() + "' , hao:'" + u.getUserAccount() + "'}");
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return JSONArray.fromObject(tree).toString();
+	}
+
+}

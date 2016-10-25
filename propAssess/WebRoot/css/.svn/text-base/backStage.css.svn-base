@@ -1,0 +1,33 @@
+﻿@charset "utf-8";
+/* CSS Document */
+body {margin:0 auto;font-size:12px;font-family: '宋体', "arial", "sans-serif";font-weight: normal;}
+div {overflow:auto;}
+img {border:0px;}
+ul,form,h1,h2,h3 {margin:0px;padding:0px;}
+h2 {font-size:14px; font-weight:bold;height:22px;color:#F00;line-height:22px;}
+ul li {list-style:none;}
+a{margin: 0px;padding:0px;border:0px;}
+a:link{color:#494949;text-decoration:none;}
+a:visited{color:#494949;text-decoration:none;}
+a:hover{color:#494949;text-decoration:underline;}
+
+.backStageConsultCon{margin-left:10px; display:inline;font-size:12px;}
+.backStageConsultCon .zixunCon{float:left;width:680px;margin-left:30px; display:inline; }
+.backStageConsultCon .zixunCon .ttl{float:left;height:34px; width:660px; background:url(../images/consultConTtlBg.gif) repeat-x; border:1px #b6d7f1 solid;}
+.backStageConsultCon .zixunCon .ttl span{float:left; height:34px; line-height:34px; font-size:14px; font-weight:bold; color:#07519a; margin-left:20px; display:inline;}
+.backStageConsultCon .zixunCon .ttlHuiFu{float:left;height:34px; width:660px; background:url(../images/consultConHuiFu.gif) repeat-x; border:1px #b6d7f1 solid;}
+.backStageConsultCon .zixunCon .ttlHuiFu span{float:left; height:34px; line-height:34px; font-size:14px; font-weight:bold; color:#d1713e; margin-left:20px; display:inline;}
+.backStageConsultCon .zixunCon .con{float:left;width:660px; border:1px #b6d7f1 solid; border-top:0px;}
+.backStageConsultCon .zixunCon .con ul{float:left;width:640px; margin-left:10px; display:inline;}
+.backStageConsultCon .zixunCon .con ul li{float:left;width:640px; line-height:30px; border-bottom:1px #ccc dashed;}
+.backStageConsultCon .zixunCon .con ul li .left{float:left;width:270px; line-height:30px;color:#ad825f;}
+.backStageConsultCon .zixunCon .con ul li .right{float:left;width:270px; line-height:30px;color:#ad825f;}
+.backStageConsultCon .zixunCon .con ul li.con{float:left;width:600px;line-height:20px;border:0px; padding:20px 20px 20px 20px;display:inline;}
+.backStageConsultCon{ margin-left:10px; display:inline;font-size:12px;}
+.backStageConsultCon textarea{float:left;width:660px; height:80px; border:1px #ddd solid;margin-left:30px; display:inline; }
+
+
+
+
+
+

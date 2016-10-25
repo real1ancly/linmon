@@ -1,0 +1,26 @@
+package com.ultrapower.assess.calculate;
+
+import java.util.List;
+
+import com.ultrapower.assess.model.AssessRecords;
+
+public interface Calculate {
+
+	/**
+	 * 手动计算考核入口  
+	 * 1，手工填值到result表中，直接计算这部分指标
+	 * 2，从KPI_VALUE表中自动获取，将值放入result表中后计算
+	 * 3，中间会查询到的表：record，kpi_value，template，result
+	 * 4，会修改的表record，result
+	 * 5，返回结果为改考核模板本次得分，方法内部已经将结果保存到record中，不需要再次保存
+	 * @param assessRecords
+	 * @return
+	 */
+	public double generaterAssessResult(AssessRecords assessRecords ) ;
+	
+	/**
+	 * 返回 List(AssessRecords) 
+	 * @return
+	 */
+	public List<AssessRecords> getNeedCalculateRecordsList();
+}

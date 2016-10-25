@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<systems>
+	<item>
+		<systemId>ASSESS</systemId>
+		<image>assess.png</image>
+		<systemName>ASSESS</systemName>
+		<privilegeState>0</privilegeState>
+		<systemDesc>考核系统</systemDesc>
+		<note>备注</note>
+	</item>	
+</systems>
+
+
+

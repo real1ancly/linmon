@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2007 (http://www.altova.com) by gaohui (EMBRACE) -->
+<!--    Privilege Point    权限点
+	id : 权限点(权限点组）ID，由应用系统进行编号，用于应用系统与4A系统之间进行资源识别。
+	name: 权限点(权限点组)显示名，用于在4A系统中展现资源含义。
+	url: 用于B/S系统，权限点所表示页面的url,在用户模块通过Acegi管理的应用系统权限时使用。可以为空。
+	accesstype: 权限点（权限点组）访问方式，表示用户可以对权限点进行哪些可能操作，在accessType.xml文件中进行定义。
+	description: 权限点（权限点组）描述，暂不使用，用于扩展
+	loadtype: 在授权界面,权限点的呈现方式 
+	０：表示普通权限点组；
+	１：表示根权限点组；
+	２：表示下级权限点以弹出表格显现;
+	3:表示下级权限点在初始化时不装载,而是在双击时将权限点添加到资源树
+	pptype: 用户于描述权限点的类型; 
+	0:系统操作或不允许进行动态分组的节点; 
+	1: 根资源权限点组; 
+	2: 资源组，在进行动态分组时，loadtype != 1 的资源组不显示。
+	3: NMS系统相关的资源类型,动态分组时所有节点归集在 loadtype=1,pptype=3的根节点下.
+	4: SLA系统的资源.
+	
+	注意：当loadtype == 1 时，其ppType的值应和组内权限点的ppType保持一致。
+-->
+<pps>
+   	<pp id='ASSESS' name='考核系统' url='/loginAction.portal' accesstype='' description='' loadtype='1' pptype='0'>	
+		<pp id='ASSESS01' name='功能权限' url='/loginAction.portal' accesstype='validity' description='' loadtype='1' pptype='0'>
+			<pp id='ASSESS0101' name='我的待办' url='/loginAction.portal' accesstype='validity' description='' loadtype='0' pptype='0'></pp>
+			<pp id='ASSESS0102' name='模板管理' url='/loginAction.portal' accesstype='validity' description='' loadtype='0' pptype='0'></pp>
+			<pp id='ASSESS0103' name='模板下发' url='/loginAction.portal' accesstype='validity' description='' loadtype='0' pptype='0'>
+               <pp id='ASSESS010301' name='下发记录管理' url="" accesstype='testv' description='' loadtype='0' pptype='0'/>
+			</pp>
+			<pp id='ASSESS0104' name='考核对象管理' url='/loginAction.portal' accesstype='validity' description='' loadtype='0' pptype='0'></pp>
+			<pp id='ASSESS0105' name='考核统计' url='/loginAction.portal' accesstype='validity' description='' loadtype='0' pptype='0'></pp>
+		</pp>
+	</pp>
+</pps>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+	<bean
+		class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref bean="cronTrigger" />
+			</list>
+		</property>
+	</bean>
+	<bean id="cronTrigger"
+		class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="jobDetail" />
+		<property name="cronExpression" value="0 0 2 * * ?" />
+	</bean>
+
+	<bean id="jobDetail"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="task" />
+		<property name="targetMethod" value="execute" />
+	</bean>
+
+	<!-- Bean配置 begin-->
+	<bean id="task" class="com.ultrapower.assess.calculate.task.MyTaskImpl">
+		<property name="calculate" ref="calculate" />
+	</bean>
+	<bean id="calculate"
+		class="com.ultrapower.assess.calculate.CalculateImpl">
+		<property name="assessRecordsManager" ref="assessRecordsManager"/>
+		<property name="assessResultManager" ref="assessResultManager"/>
+		<property name="assessKpiValueManager" ref="assessKpiValueManager"/>
+	</bean>
+	<!-- Bean配置 end -->
+</beans>

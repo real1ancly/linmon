@@ -1,0 +1,13 @@
+import com.ultrapower.assess.util.expression.*;
+
+Object getKpiValue(kpiId,ciId){
+	return Functions.getPropertyValue(resId,propId);
+}
+
+Object round(val){
+	return Functions.round(val);
+}
+
+Object round(val,w){
+	return Functions.round(val,w);
+}

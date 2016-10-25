@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<urlrewrite>
+    <rule>
+        <note>help redirect</note>
+        <from>^/([a-zA-Z0-9]+).jhtml$</from>
+        <to>/$1.do</to>
+    </rule>
+    <rule>
+        <note>about-1 about -2</note>
+        <from>^/([a-zA-Z0-9]+)-([0-9]+).jhtml$</from>
+        <to>/$1.do?method=index&amp;type=$2</to>
+    </rule>
+    <rule>
+        <note> help redirect</note>
+        <from>^/([a-zA-Z0-9]+)-detail-([0-9]+).jhtml$</from>
+        <to>/$1.do?method=detail&amp;id=$2</to>
+    </rule>
+<outbound-rule>
+        <note>
+            The outbound-rule specifies that when response.encodeURL is called (if you are using JSTL c:url)
+            the url /rewrite-status will be rewritten to /test/status/.
+            The above rule and this outbound-rule means that end users should never see the
+            url /rewrite-status only /test/status/ both in thier location bar and in hyperlinks
+            in your pages.
+        </note>
+        <from>/rewrite-status</from>
+        <to>/test/status/</to>
+</outbound-rule>
+</urlrewrite>

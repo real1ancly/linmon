@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="../style/blue/othercommon/css/main.css" rel="stylesheet" type="text/css" />
+<title>新增考核页</title>
+<script src="../js/main.js"></script>
+<script language="javascript" src="date/WdatePicker.js"></script>
+<script language="javascript">
+window.onresize = function() {
+	setCenter(4,27);
+}
+window.onload = function() {
+	setCenter(4,27);
+}
+</script>
+</head>
+<body>
+<div class="content">
+<div class="content_title_bg">
+<div class="content_title">当前位置：模板管理 >> 新增考核项</div>
+</div>
+<div style="height:100%;overflow:auto;width:90%;padding:0px;" id="center">
+    <table class="tableborder" border="0" cellpadding="5" cellspacing="0" width="98%"  id="tab" style=" margin:10px 10px 0 10px;">
+    <tr>
+    	<td colspan="3"><div style="margin-left:5px;">新增考核项：此处展示新增考核项注意事项</div></td>
+    </tr>
+    <tr>
+    	<td width="30%" align="right">指标ID：</td>
+    	<td><input type="text" name="targetID" value=""  maxlength="50" onfocus="this.className='focus'" onblur="this.className='blur'" class="blur" /></td>
+    </tr>
+    <tr>
+    	<td width="30%" align="right">模板ID：</td>
+    	<td><input type="text" name="tempID" value=""  maxlength="50" onfocus="this.className='focus'" onblur="this.className='blur'" class="blur" /></td>
+    </tr>
+    <tr>
+    	<td width="30%" align="right">父节点ID：</td>
+    	<td><input type="text" name="fatherNodeID" value=""  maxlength="50" onfocus="this.className='focus'" onblur="this.className='blur'" class="blur" /></td>
+    </tr>
+    <tr>
+    	<td align="right">指标编码：</td>
+    	<td><input type="text" name="targetCode" value="" maxlength="50" onFocus="this.className='focus'" onBlur="this.className='blur'" class="blur"></td>
+    </tr>
+    <tr>
+    	<td align="right">指标名称：</td>
+    	<td><input type="text" name="targetName" value="" maxlength="50" onFocus="this.className='focus'" onBlur="this.className='blur'" class="blur"></td>
+    </tr>
+    <tr> 
+    	<td align="right">指标描述：</td>
+   		<td><input type="text" name="targetDescribe " value="" maxlength="50" onFocus="this.className='focus'" onBlur="this.className='blur'" class="blur"></td>
+    </tr>
+    <tr>
+         <td align="right">指标类型：</td>
+         <td><input type="radio" name="targetDescribe">类型1 <input type="radio" name="targetDescribe">类型2</td>
+    </tr>
+    <tr>
+        <td align="right">指标值计算公式：</td>
+        <td><input type="text" name="targetCalculationFormula" value="" class="blur" onFocus="this.className='focus'" onBlur="this.className='blur'"></td>
+    </tr>
+    <tr>
+        <td align="right">指标单位：</td>
+        <td><input type="radio" name="targetDescribe">单位1 <input type="radio" name="targetDescribe">单位2</td>
+    </tr>
+    <tr>
+        <td align="right">得分计算公式：</td>
+        <td><input type="text" name="scoreCalculationFormula" value="" class="blur" onFocus="this.className='focus'" onBlur="this.className='blur'"></td>
+    </tr>
+    <tr>
+        <td align="right">周期：</td>
+        <td><input type="radio" name="targetDescribe">月 <input type="radio" name="targetDescribe">周</td>
+    </tr>
+    <tr>
+        <td align="right">指标状态：</td>
+        <td><input type="radio" name="targetDescribe">状态1 <input type="radio" name="targetDescribe">状态2</td>
+    </tr> 
+    <tr>
+        <td align="right">最后修改人：</td>
+        <td><input type="text" name="lastModifyUser" value="" class="blur" onFocus="this.className='focus'" onBlur="this.className='blur'"></td>
+    </tr> 
+    <tr>
+        <td align="right">最后修改时间：</td>
+        <td><input class="blur" id="inputid" type="text" name="startCheckTime" value="" maxlength="50" /><img onclick="WdatePicker({el:$dp.$('inputid')});" src="date/skin/datePicker.gif" width="16" height="22" align="absmiddle"></td>
+    </tr> 
+    <tr>
+        <td align="right">排序：</td>
+        <td><input type="text" name="sort" value="" class="blur" onFocus="this.className='focus'" onBlur="this.className='blur'"></td>
+    </tr>                       
+    <tr>
+        <td align="right" valign="top">备注：</td>
+        <td colspan="3"><textarea name="section" cols="50" rows="5">&nbsp;</textarea></td>
+    </tr>
+   </table>
+<table width="99%" class="button_bar"  >
+        <tr>
+          <td align="center">                      
+        <input type="button" value="提交" class="button"
+         onmouseover="this.className='buttonhover'"   onmouseout="this.className='button'"/>
+        <input type="reset" value="重置"  class="button"
+         onmouseover="this.className='buttonhover'"   onmouseout="this.className='button'"/>
+        <input type="button" value="返回"  class="button"
+         onmouseover="this.className='buttonhover'"   onmouseout="this.className='button'"/>
+		</td>
+        </tr>
+       </table>
+</div>
+</div>
+</body>
+</html>

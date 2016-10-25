@@ -1,0 +1,210 @@
+package com.ultrapower.assess.web;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.xpath.operations.String;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.bidlink.core.commons.BaseManageController;
+import com.bidlink.core.commons.support.page.Page;
+import com.ultrapower.accredit.api.SecurityService;
+import com.ultrapower.accredit.common.value.Organise;
+import com.ultrapower.accredit.common.value.User;
+import com.ultrapower.accredit.rmiclient.RmiClientApplication;
+import com.ultrapower.assess.manager.AssessObjManager;
+import com.ultrapower.assess.model.AssessObject;
+import com.ultrapower.assess.util.PageUtils;
+
+/**
+ * 考核对象管理
+ * 
+ * @author admin
+ * 
+ */
+@SuppressWarnings("unchecked")
+public class AssessObjController extends BaseManageController {
+
+	private AssessObjManager assessObjManager;
+
+	private RmiClientApplication rmi = RmiClientApplication.getInstance();
+	
+	
+
+	public void setAssessObjManager(AssessObjManager assessObjManager) {
+		this.assessObjManager = assessObjManager;
+	}
+
+	/**
+	 * 默认方法
+	 */
+	@Override
+	public ModelAndView index(HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mav = new ModelAndView("assess/frame/content_checkManagement.jsp");
+		Page pageObj = assessObjManager.getPageObj(request);
+		List<AssessObject> listObj = (List)pageObj.getResult();
+		for(AssessObject assessObject:listObj){
+			try {
+				String userName = rmi.getSecurityService().getUserByAccount(assessObject.getAssignee()).getUserName();
+				assessObject.setAssignee(userName);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			  
+		}
+		mav.addObject("listObj", listObj);
+		mav.addObject("pageToString",PageUtils.showPage5(pageObj, "assessObj.do?method=index"));
+		return mav;
+	}
+
+	/**
+	 * 转向添加页面
+	 * 
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	public ModelAndView forAddPage(HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mav = new ModelAndView("assess/frame/addCheckUser.jsp");
+		String id = request.getParameter("id");
+		String stage = request.getParameter("stage");
+		String targetCode = "";
+		if (stage.equals("true") || stage == "true") {
+			stage = "新增";
+		} else {
+			stage = "修改";
+		}
+		List<AssessObject> lg = assessObjManager.findObjManager(id);
+		String userName = "";
+		try {
+			// add by wangjing 根据帐号找到用户名称
+			if(lg!=null&&lg.size()>0){
+				targetCode = String.valueOf(lg.get(0).getObjectType());
+				userName = rmi.getSecurityService().getUserByAccount(lg.get(0).getAssignee()).getUserName();
+			}
+			// add by wangjing
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		if (lg.size() == 0) {
+			lg.add(new AssessObject());
+		}
+		mav.addObject("objMang", lg);
+		mav.addObject("targetCode", targetCode);
+		mav.addObject("userName", userName);
+		mav.addObject("staflg", stage);
+		return mav;
+	}
+
+	/**
+	 * 删除考核对象（可多批量删除）
+	 * 
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	public ModelAndView delObj(HttpServletRequest request, HttpServletResponse response) {
+		String[] id = request.getParameter("idList").split(",");
+		for (int i = 0; i < id.length; i++) {
+			assessObjManager.delObjManager(id[i]);
+		}
+		return index(request, response);
+	}
+
+	/**
+	 * 添加/修改 考核对象
+	 * 
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	public ModelAndView addCheckObj(HttpServletRequest request, HttpServletResponse response) {
+		String stage = request.getParameter("stage");
+		String id = request.getParameter("idInfo");
+		// String targetID = request.getParameter("targetID");
+		String foreignId = request.getParameter("foreignId");
+		String tempID = request.getParameter("tempID");
+		String fatherNodeID = request.getParameter("fatherNodeID");
+		String targetCode = request.getParameter("targetCode");
+		String targetName = request.getParameter("targetName");
+		AssessObject aob = new AssessObject();
+		aob.setForeignId(foreignId);
+		aob.setObjectCode(tempID);
+		aob.setObjectName(fatherNodeID);
+		aob.setObjectType(Long.parseLong(targetCode));
+		aob.setAssignee(targetName);
+		aob.setStatus(Long.parseLong("1"));
+		if (stage.equals("true") || stage == "true") {
+			assessObjManager.addObj(aob);
+		} else {
+			aob.setId(id);
+			assessObjManager.updateObj(aob);
+		}
+		return index(request, response);
+	}
+	
+	public ModelAndView  getListTree(HttpServletRequest request, HttpServletResponse response){
+		ModelAndView mav = new ModelAndView("assess/frame/jsonView.jsp");
+		String treeValue = "";
+		List<Organise> orgList = null;
+		List<User> userList = null;
+		String obj = request.getParameter("obj");
+		String pid = request.getParameter("pid");
+		SecurityService securityService = rmi.getSecurityService();
+			try {
+				if(obj!=null&&obj.equals("user")){
+					userList = rmi.getSecurityService().getUserByOrgId(pid);
+					if(userList==null){
+						User user = rmi.getSecurityService().getUserByUserId(Long.valueOf(pid));
+						treeValue += "{'pId':'" + pid + "' , 'id':'" + user.getUserID() + "' , 'name':'" + user.getUserName() + "' , 'hao':'" + user.getUserAccount() + "'},";
+					}else{
+						for (int j = 0; j < userList.size(); j++) {
+		    				User user = userList.get(j);
+		    				treeValue += "{'pId':'" + pid + "' , 'id':'" + user.getUserID() + "' , 'name':'" + user.getUserName() + "' , 'hao':'" + user.getUserAccount() + "'},";
+		    			}
+					}
+					
+				}else{
+					if(pid!=null){
+						orgList = rmi.getUnderOrganizationsList(pid);
+					}else{
+						pid = "1";
+						orgList = rmi.getTopOrganises();
+					}
+					if(orgList.size()>0){
+						for (int i = 0; i < orgList.size(); i++) {
+							Organise org = orgList.get(i);
+							if (org.getDept_id().equals("1")) {
+								treeValue += "{'id':'" + org.getDept_id() + "' , 'pId':'" + org.getSuper_id() + "' , 'name':'" + org.getDept_name() + "','isParent':true,'open':true},";
+							} else {
+								treeValue += "{'id':'" + org.getDept_id() + "' , 'pId':'" + org.getSuper_id() + "' , 'name':'" + org.getDept_name() + "','isParent':true},";
+							}
+						}
+						
+					}else{
+						userList = rmi.getSecurityService().getUserByOrgId(pid);
+							for (int j = 0; j < userList.size(); j++) {
+			    				User user = userList.get(j);
+			    				treeValue += "{'pId':'" + pid + "' , 'id':'" + user.getUserID() + "' , 'name':'" + user.getUserName() + "' , 'hao':'" + user.getUserAccount() + "'},";
+						}
+						
+					
+				  }
+				
+				}	
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			if(treeValue.length()>0){
+				treeValue = treeValue.substring(0, treeValue.length() - 1);
+			}
+
+			
+        mav.addObject("treeValueList", "["+treeValue+"]");
+		
+		return  mav;
+	
+	}
+}

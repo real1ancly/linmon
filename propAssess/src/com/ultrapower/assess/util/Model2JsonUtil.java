@@ -1,0 +1,306 @@
+/**
+ * 
+ */
+package com.ultrapower.assess.util;
+
+import jsx3.lang.Object;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+import net.sf.json.util.JSONUtils;
+
+import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.beanutils.PropertyUtils;
+import org.apache.commons.lang.StringUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.apache.xpath.operations.String;
+import org.hibernate.mapping.Map;
+import org.springframework.web.util.HtmlUtils;
+
+import com.bidlink.core.commons.support.page.Page;
+
+public class Model2JsonUtil {
+
+	private static Log logger = LogFactory.getLog(Model2JsonUtil.class);
+
+	/**
+	 * 将单个对象转成json回应字符串，包含全部属性字段
+	 * 
+	 * @param obj
+	 * @return
+	 */
+	public static String Object2Json(Object obj) {
+		return Object2Json(obj, null);
+	}
+
+	/**
+	 * 将单个对象转成json回应字符串，同时指定忽略输出的属性字段列表
+	 * 
+	 * @param obj
+	 * @param excludes
+	 *            忽略输出的属性字段列表
+	 * @return
+	 */
+	public static String Object2Json(Object obj, String[] excludes) {
+
+		return Object2Json(obj, excludes, null);
+
+	}
+
+	/**
+	 * 拼装单个json对象的{}部分
+	 * 
+	 * @param obj
+	 * @param excludes
+	 * @param extPropertys
+	 * @return
+	 */
+	private static String Object2JsonStr(Object obj, String[] excludes,
+			String[] extPropertys) {
+		StringBuffer sb = new StringBuffer();
+
+		// sb.append(beginStr);
+
+		if (excludes != null) {
+			sb.append(JSONObject.fromObject(obj, excludes));
+		} else {
+			sb.append(JSONObject.fromObject(obj));
+		}
+
+		if (extPropertys != null) {
+
+			String fieldName = "";// json属性字段名
+			String propertyExpr = "";// 对象属性表达式
+			String value = "";
+			// boolean isFirst = true;
+
+			String preStr = StringUtils.removeEnd(sb.toString(), "}");
+			sb.delete(0, sb.length());
+			sb.append(preStr);
+
+			for (String item : extPropertys) {
+
+				sb.append(",");
+				fieldName = StringUtils.substringBefore(item, ":");
+				propertyExpr = StringUtils.substringAfter(item, ":");
+
+				try {
+					value = HtmlUtils.htmlEscape(BeanUtils.getProperty(obj,
+							propertyExpr));
+
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+
+				sb.append(fieldName + ":'").append(value).append("'");
+
+			}
+
+			sb.append("}");
+
+		}
+
+		return sb.toString();
+
+	}
+
+	/**
+	 * 将单个对象转成json回应字符串，同时指定忽略输出的属性字段列表和扩展字段表达式列表
+	 * 
+	 * @param obj
+	 * @param excludes
+	 * @param extPropertys
+	 *            扩展字段表达式列表 每个string形如<br>
+	 *            "sheetInfoId:sheetInfo.id"
+	 * @return
+	 */
+	public static String Object2Json(Object obj, String[] excludes,
+			String[] extPropertys) {
+
+		String beginStr = "{success: true,data:[";
+		String endStr = "]}";
+		StringBuffer sb = new StringBuffer();
+		sb.append(beginStr);
+		sb.append(Object2JsonStr(obj, excludes, extPropertys));
+		sb.append(endStr);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("json:" + sb.toString());
+		}
+		return sb.toString();
+
+	}
+
+	/**
+	 * 将单个对象转成json回应字符串，同时指定忽略输出的属性字段列表和扩展字段表达式列表
+	 * 
+	 * @param obj
+	 * @param excludes
+	 * @param extPropertys
+	 *            扩展字段表达式列表 每个string形如<br>
+	 *            "sheetInfoId:sheetInfo.id"
+	 * @return
+	 */
+	public static String Map2Json(Map map, String[] excludes) {
+
+		String beginStr = "{success: true,data:[";
+		String endStr = "]}";
+		StringBuffer sb = new StringBuffer();
+		sb.append(beginStr);
+		if (excludes != null) {
+			sb.append(JSONObject.fromMap(map, excludes));
+		} else {
+			sb.append(JSONObject.fromMap(map));
+		}
+		sb.append(endStr);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("json:" + sb.toString());
+		}
+		return sb.toString();
+
+	}
+
+	/**
+	 * 将list对象转化成json字符串
+	 * 
+	 * @param list
+	 * @return
+	 */
+	public static String List2Json(List list) {
+		return List2Json(list, null);
+	}
+
+	/**
+	 * 将list对象转成json字符串,同时指定忽略输出的属性字段列表
+	 * 
+	 * @param list
+	 * @param excludes
+	 * @return
+	 */
+	public static String List2Json(List list, String[] excludes) {
+		StringBuffer sb = new StringBuffer();
+
+		sb.append("{totalProperty:" + list.size() + ",root:");
+
+		if (excludes == null) {
+			sb.append(JSONArray.fromCollection(list));
+		} else {
+			sb.append(JSONArray.fromCollection(list, excludes));
+		}
+
+		sb.append("}");
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("json:" + sb.toString());
+		}
+
+		return sb.toString();
+
+	}
+
+	/**
+	 * 将page对象转成json字符串
+	 * 
+	 * @param page
+	 * @return
+	 */
+	public static String Page2Json(Page page) {
+		return Page2Json(page, null);
+	}
+
+	/**
+	 * 将某个obj转化成合适的json对象右值部分,如果是时间类型，则保留对象
+	 * 
+	 * @param obj
+	 * @return
+	 */
+	private static String getJsonStringFromObject(Object obj) {
+		if (obj == null) {
+			return "''";
+		}
+
+		if (obj.getClass().getName().equalsIgnoreCase("java.util.Date")
+				|| obj.getClass().getName().equalsIgnoreCase(
+						"java.sql.Timestamp")) {
+			return JSONObject.fromObject(obj).toString();
+		} else {
+			return JSONUtils.quote(StringUtils.trimToEmpty(HtmlUtils
+					.htmlEscape(String.valueOf(obj).replaceAll("null", ""))));
+		}
+
+	}
+
+	/**
+	 * 将page对象转成json字符串,同时指定忽略输出的属性字段列表
+	 * 
+	 * @param page
+	 *            page对象
+	 * @param String[]
+	 *            excludes 忽略输出的属性字段列表
+	 * @return
+	 */
+	public static String Page2Json(Page page, String[] excludes) {
+
+		StringBuffer sb = new StringBuffer();
+
+		sb.append("{totalProperty:" + page.getTotalCount() + ",root:");
+
+		if (excludes == null) {
+			sb.append(JSONArray.fromCollection((Collection) page.getResult()));
+		} else {
+			sb.append(JSONArray.fromCollection((Collection) page.getResult(),
+					excludes));
+		}
+
+		sb.append("}");
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("json:" + sb.toString());
+		}
+
+		return sb.toString();
+	}
+
+	/**
+	 * 由于json1.0-jdk15默认将数字型的null值转为0，与实际使用情况严重不符，因此使用此函数对数字型属性进行json转换，
+	 * 将null值转成""空字符串
+	 * 
+	 * @param obj
+	 * @param numberPropertys
+	 * @return
+	 */
+	public static String convertNumberProperty(Object objSrc,
+			String[] numberPropertys) {
+
+		StringBuffer sb = new StringBuffer();
+
+		String value = "";
+
+		try {
+			if (numberPropertys != null) {
+				for (String numberProperty : numberPropertys) {
+					Object obj = PropertyUtils.getProperty(objSrc,
+							numberProperty);
+
+					value = obj == null ? "" : String.valueOf(obj);
+
+					if (JSONUtils.isNumber(obj)) {
+						sb.append("\"").append(numberProperty).append("\":")
+								.append("\"").append(value).append("\",");
+
+					}
+				}
+			}
+		} catch (Exception e) {
+
+		}
+		return "";
+	}
+
+	public static void main(String[] args) {
+		
+
+	}
+
+}

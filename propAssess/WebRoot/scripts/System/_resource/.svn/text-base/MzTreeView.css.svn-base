@@ -1,0 +1,20 @@
+/*====== MzTreeView.css == meizz == 2007-08-26 ======*/
+
+div.MzTreeView{}
+div.MzTreeView td{font-size:9pt;}
+div.MzTreeView img{cursor:default; border:none; vertical-align:middle;}
+div.MzTreeView a{margin-left:3px; font-size:9pt; color:#000060; text-decoration:none;}
+
+div.MzTreeView a.selected{color:#FFFFFF; background-color:#0A246A;}
+.hide{display: none;}
+
+div.MzTreeView dl, div.MzTreeView dt, div.MzTreeView dd{padding:0; margin:0}
+
+/******* tree node inputer *******/
+#MzTreeInputer{width: 100%; font-size: 12px; background-color: #D4D0C8;}
+#MzTreeInputer col.caption{width: 60px; line-height: 20px; text-align: right; vertical-align: top; background-color: #EAEAEA;}
+#MzTreeInputer col.content{background-color: #FFFFFF;}
+#MzTreeInputer #mtinputeroption{color: #000080; cursor: pointer; text-decoration: underline;}
+#MzTreeInputer #mtinputerCheck{width: 80px;}
+#MzTreeInputer input.text{width: 80px; font-size: 12px; border: inset 1px #D4D0C8;}
+#MzTreeInputer select{width: 80px;}

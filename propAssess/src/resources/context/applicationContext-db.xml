@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<!-- 配置数据源连接池 -->
+	<bean id="dataSource"
+		class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close">
+		<property name="driverClass">
+			<value>${datasource.driverClassName}</value>
+		</property>
+		<property name="jdbcUrl">
+			<value>${datasource.url}</value>
+		</property>
+		<property name="maxIdleTime">
+			<value>2800</value>
+		</property>
+		<property name="properties">
+			<props>
+				<prop key="c3p0.minPoolSize">${hibernate.c3p0.minPoolSize}</prop>
+				<prop key="hc3p0.maxPoolSize">${hibernate.c3p0.maxPoolSize}</prop>
+				<prop key="hc3p0.maxIdleTime">${hibernate.c3p0.maxIdleTime}</prop>
+				<prop key="hc3p0.timeout">${hibernate.c3p0.timeout}</prop>
+				<prop key="c3p0.max_statement">${hibernate.c3p0.max_statement}</prop>
+				<prop key="c3p0.testConnectionOnCheckout">true</prop>
+				<prop key="user">${datasource.username}</prop>
+				<prop key="password">${datasource.password}</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<!-- 配置Hibernate支持 -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="mappingLocations">
+			<list>
+				<value>classpath*:/hibernate/**/*.hbm.xml</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					${hibernate.dialect}
+				</prop>
+				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+				<prop key="jdbc.batch_size">${jdbc.batch_size}</prop>
+				<!--  <prop key="jdbc.fetch_size">${jdbc.fetch_size}</prop> -->
+				<prop key="hibernate.cache.use_query_cache">${hibernate.cache.use_query_cache}</prop>
+				<prop key="hibernate.cache.provider_class">
+					${hibernate.cache.provider_class}
+				</prop>
+				<!-- 指定hibernate所需要的ehcache.xml文件的位置 -->
+				<prop key="hibernate.cache.provider_configuration_file_resource_path">
+					/resources/conf/ehcache.xml
+				</prop>
+			</props>
+		</property>
+		<!-- lob处理器,解决oracle的clob,blob问题 -->
+		<property name="lobHandler">
+			<ref bean="oracleLobHandler" />
+		</property>
+	</bean>
+	<bean id="nativeJdbcExtractor"
+		class="org.springframework.jdbc.support.nativejdbc.C3P0NativeJdbcExtractor" />
+	<bean id="oracleLobHandler"
+		class="org.springframework.jdbc.support.lob.OracleLobHandler"
+		lazy-init="true">
+		<property name="nativeJdbcExtractor">
+			<ref bean="nativeJdbcExtractor" />
+		</property>
+	</bean>
+
+	<!-- 事务管理器 -->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<!--表示要将下面定义的userDao置于事务处理之下-->
+	<bean id="baseTxService"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean"
+		abstract="true">
+		<property name="transactionManager" ref="transactionManager" />
+		<!-- 设置proxyTargetClass为true,则利用cglib代理实体类 -->
+		<property name="proxyTargetClass" value="true" />
+		<!--定义不同情况下，事务处理的方式-->
+		<property name="transactionAttributes">
+			<props>
+				<prop key="get*">PROPAGATION_REQUIRED,readOnly</prop>
+				<prop key="find*">PROPAGATION_REQUIRED,readOnly</prop>
+				<prop key="load*">PROPAGATION_REQUIRED,readOnly</prop>
+				<prop key="save*">PROPAGATION_REQUIRED</prop>
+				<prop key="syn*">PROPAGATION_REQUIRED</prop>
+				<prop key="update*">PROPAGATION_REQUIRED</prop>
+				<prop key="remove*">PROPAGATION_REQUIRED</prop>
+				<prop key="cancel*">PROPAGATION_REQUIRED</prop>
+				<prop key="forbid*">PROPAGATION_REQUIRED</prop>
+				<prop key="callback*">PROPAGATION_REQUIRED</prop>
+				<prop key="add*">PROPAGATION_REQUIRED</prop>
+				<prop key="*">
+					PROPAGATION_REQUIRED,readOnly,timeout_0120
+				</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!-- =========================timer definition================================================= -->
+	<!--hibernate interceptor, for lazy loading-->
+	<bean id="hibernateInterceptor"
+		class="org.springframework.orm.hibernate3.HibernateInterceptor">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="jdkBeanNameProxyCreator"
+		class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+		<property name="beanNames">
+			<list>
+				<value></value>
+			</list>
+		</property>
+		<property name="proxyTargetClass">
+			<value>true</value>
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>hibernateInterceptor</value>
+			</list>
+		</property>
+	</bean>
+</beans>

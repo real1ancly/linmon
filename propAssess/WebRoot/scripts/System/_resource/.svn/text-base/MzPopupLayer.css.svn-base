@@ -1,0 +1,20 @@
+/*====== MzPopupLayer.css == meizz == 2007-01-23 ======*/
+html *{-moz-user-select: none;}
+html, body{height: 100%; max-height:100%;}
+body,td,th{font: 12px Geneva, Arial, Helvetica, sans-serif; cursor: default;}
+body{margin: 0; padding: 0px; overflow: hidden;}
+
+/*--= dropdownmenu or contentment =--*/
+table
+{
+  border: solid 1px #999999;
+  background: #FFFFFF url(MzPopupLayer/bg.gif) repeat-y left;
+}
+td{line-height: 20px;}
+td.icon{width: 25px; text-align: center;}
+td.text{}
+td.hasChild{width: 20px; text-align: center;}
+
+td.line{line-height: normal; font-size: 1px;}
+td.line div{border-top: solid 1px #999999; height: 2px; margin-top: 2px;}
+tr.line td.icon{font-size: 1px; height: 1px; line-height: normal;}

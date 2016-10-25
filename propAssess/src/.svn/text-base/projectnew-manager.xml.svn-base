@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+ 	<!--
+ 	<import resource="classpath:com/ihecn/project/plugins/solrj/applicationContext-solrj.xml" />
+ 	邮件<import resource="classpath:com/ihecn/chd/plugins/email/applicationContext-email.xml" />
+ 	定时<import resource="classpath:com/ihecn/chd/plugins/quartz/applicationContext-quartz.xml" />
+ 	-->
+	
+	<bean id="newsManager" parent="baseTxService">
+ 		<property name="target">
+ 			<bean class="com.ultrapower.assess.manager.NewsManager" autowire="byName"></bean>
+ 		</property>
+ 	</bean>
+ 	<bean id="userManager" parent="baseTxService">
+ 		<property name="target">
+ 			<bean class="com.ultrapower.assess.manager.UserManager" autowire="byName"></bean>
+ 		</property>
+ 	</bean>
+ 	<bean id="assessMenuManager" parent="baseTxService">
+ 		<property name="target">
+ 			<bean class="com.ultrapower.assess.manager.AssessMenuManager" autowire="byName"></bean>
+ 		</property>
+ 	</bean>
+ 	<bean id="assessTemplateManager" parent="baseTxService">
+ 		<property name="target">
+ 			<bean class="com.ultrapower.assess.manager.AssessTemplateManager" autowire="byName"></bean>
+ 		</property>
+ 	</bean>
+ 	<bean id="assessObjManager" parent="baseTxService">
+ 		<property name="target">
+ 			<bean class="com.ultrapower.assess.manager.AssessObjManager" autowire="byName"></bean>
+ 		</property>
+ 	</bean>
+ 	<bean id="assessPropManager" parent="baseTxService">
+ 		<property name="target">
+ 			<bean class="com.ultrapower.assess.manager.AssessPropManager" autowire="byName"></bean>
+ 		</property>
+ 	</bean>
+ 	<bean id="assessRecordsManager" parent="baseTxService">
+ 		<property name="target">
+ 			<bean class="com.ultrapower.assess.manager.AssessRecordsManager" autowire="byName"></bean>
+ 		</property>
+ 	</bean>
+ 	<bean id="assessResultManager" parent="baseTxService">
+ 		<property name="target">
+ 			<bean class="com.ultrapower.assess.manager.AssessResultManager" autowire="byName"></bean>
+ 		</property>
+ 	</bean>
+ 	<bean id="assessChargeManager" parent="baseTxService">
+ 		<property name="target">
+ 			<bean class="com.ultrapower.assess.manager.AssessChargeManager" autowire="byName"></bean>
+ 		</property>
+ 	</bean>
+ 	<bean id="assessScheduManager" parent="baseTxService">
+ 		<property name="target">
+ 			<bean class="com.ultrapower.assess.manager.AssessScheduManager" autowire="byName"></bean>
+ 		</property>
+ 	</bean>
+ 	<bean id="assessKpiValueManager" parent="baseTxService">
+ 		<property name="target">
+ 			<bean class="com.ultrapower.assess.manager.AssessKpiValueManager" autowire="byName"/>
+ 		</property>
+ 		
+ 	</bean> 
+ 	
+</beans>

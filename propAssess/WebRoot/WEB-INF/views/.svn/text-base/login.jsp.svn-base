@@ -1,0 +1,25 @@
+<%@ page language="java" pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Cache-Control" content="no-store" />
+		<meta http-equiv="Pragma" content="no-cache" />
+	</head>
+	<body>
+		<form action="login~project.do?method=doLogin" method="post">
+			<br />
+			<br />
+			<br />
+			<br />
+			<div align="center">
+				登录名:
+				<input type="text" name="userName" />
+				<br />
+				密码：&nbsp;&nbsp;
+				<input type="password" name="password" />
+				<br />
+				<input type="submit" value="登录" />
+			</div>
+		</form>
+	</body>
+</html>

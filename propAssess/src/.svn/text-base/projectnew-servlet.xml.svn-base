@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+		
+  <bean id="loginHandlerMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+	<property name="mappings">
+			<value>
+			    /index.do=indexController
+				/main.do=mainController
+				/adminNews.do=newsController
+				/template.do=templateController
+				/assessProp.do=assessPropController
+				/assessObj.do=assessObjmController
+				/assessProxy.do=myChargeController
+				/assessTemp.do=assessTempController
+				/assessStat.do=assessStatController
+				/checkHistory.do=checkHistoryController
+				/historyResult.do=historyResultController
+			</value>
+		</property>
+	</bean>
+	<bean id="mainController" class="com.ultrapower.assess.web.MainController" autowire="byName"></bean>
+	<bean id="newsController" class="com.ultrapower.assess.web.NewsController" autowire="byName"></bean>
+	<bean id="indexController" class="com.ultrapower.assess.web.IndexController" autowire="byName"></bean>
+	<bean id="templateController" class="com.ultrapower.assess.web.TemplateController" autowire="byName"></bean>
+	<bean id="assessPropController" class="com.ultrapower.assess.web.AssessPropController" autowire="byName"></bean>
+	<bean id="assessObjmController" class="com.ultrapower.assess.web.AssessObjController" autowire="byName"></bean>
+	<bean id="myChargeController" class="com.ultrapower.assess.web.MyChargeController" autowire="byName"></bean>
+	<bean id="assessTempController" class="com.ultrapower.assess.web.AssessTempController" autowire="byName"></bean>
+	<bean id="checkHistoryController" class="com.ultrapower.assess.web.CheckHistoryController" autowire="byName"></bean>
+	<bean id="historyResultController" class="com.ultrapower.assess.web.HistoryResultController" autowire="byName"></bean>
+	<bean id="assessStatController" class="com.ultrapower.assess.web.AssessStatController" autowire="byName"></bean>
+</beans>

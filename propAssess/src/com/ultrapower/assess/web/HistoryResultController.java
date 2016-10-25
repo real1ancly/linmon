@@ -1,0 +1,62 @@
+package com.ultrapower.assess.web;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.xpath.operations.String;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.bidlink.core.commons.BaseManageController;
+import com.bidlink.core.commons.support.page.Page;
+import com.ultrapower.assess.manager.AssessObjManager;
+import com.ultrapower.assess.manager.AssessRecordsManager;
+import com.ultrapower.assess.manager.AssessTemplateManager;
+import com.ultrapower.assess.util.PageUtils;
+
+@SuppressWarnings("unchecked")
+public class HistoryResultController extends BaseManageController {
+
+	private AssessRecordsManager assessRecordsManager;
+	private AssessTemplateManager assessTemplateManager;
+	private AssessObjManager assessObjManager;
+
+	@Override
+	public ModelAndView index(HttpServletRequest request,
+			HttpServletResponse response) {
+
+		ModelAndView mav = new ModelAndView("assess/frame/historyResult.jsp");
+
+		 String templateName = request.getParameter("templateName") == null ?
+		 ""
+		 : request.getParameter("templateName");
+		 String objectName = request.getParameter("objectName") == null ? ""
+		 : request.getParameter("objectName");
+
+		 List<String> templateList = assessTemplateManager
+		 .getIdsByName(templateName);
+		 List<String> objectList = assessObjManager.getIdsByName(objectName);
+//		 List<AssessRecords> recordLists = assessRecordsManager.getHisResult(
+//		 objectList, templateList, checkCyrcle, beginTime, endTime);
+
+		Page pageObj = assessRecordsManager.getPageObj(request,templateList,objectList);
+		// mav.addObject("listObj", recordLists);
+		mav.addObject("listObj", pageObj.getResult());
+		mav.addObject("pageToString", PageUtils.showPage5(pageObj,
+				"historyResult.do?method=index"));
+		return mav;
+	}
+
+	public void setAssessRecordsManager(
+			AssessRecordsManager assessRecordsManager) {
+		this.assessRecordsManager = assessRecordsManager;
+	}
+
+	public void setAssessTemplateManager(AssessTemplateManager assessTemplateManager) {
+		this.assessTemplateManager = assessTemplateManager;
+	}
+
+	public void setAssessObjManager(AssessObjManager assessObjManager) {
+		this.assessObjManager = assessObjManager;
+	}
+
+}

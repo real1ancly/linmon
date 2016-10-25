@@ -1,0 +1,162 @@
+html{
+    overflow:hidden;
+}
+body{
+	margin:0px;
+ 	SCROLLBAR-FACE-COLOR: #ebedf2;
+     SCROLLBAR-HIGHLIGHT-COLOR: #dfe8f4;
+     SCROLLBAR-SHADOW-COLOR: #bfbfc2;
+     SCROLLBAR-3DLIGHT-COLOR: #bfbfc2;
+     SCROLLBAR-ARROW-COLOR: #848585;
+     SCROLLBAR-TRACK-COLOR: #f8f7f7;
+     SCROLLBAR-DARKSHADOW-COLOR: #ffffff;
+     SCROLLBAR-BASE-COLOR: #ebedf2;
+}
+.content{
+	border-left:#a6a6a6 1px solid; 
+	border-right:#a6a6a6 1px solid; 
+	border-bottom:#a6a6a6 1px solid; 
+	height:100%;
+	margin-right:2px;
+	_margin-right:2px;
+}
+.content_title_bg{
+	background:url(../images/content_title_bg.png) repeat-x;
+	height:26px;
+	font-family:'ËÎÌå';
+	font-size:12px;
+	padding-left:5px;
+	color:#333333;
+	font-weight:bold;
+	line-height:26px;
+}
+.content_title{
+	padding-left:10px;
+}
+.tableborder{
+border:solid 1px #CCCCCC;
+border-collapse:collapse;
+font-size:12px;
+}
+.tableborder td{ 
+border:solid 1px #CCCCCC;
+border-collapse:collapse;
+height:20px;
+padding-left:3px;
+background-color:#f8f8f8;
+font-family:"ËÎÌå", "Ó×Ô²";
+}
+.tableborder img{
+margin-left:3px;
+cursor:pointer;
+}
+.tableborder th{
+background:url(../images/thbg.png) repeat-x top;
+height:20px;
+font-weight:normal;
+border:solid 1px #CCCCCC;
+border-collapse:collapse;
+color:#490f00;
+text-align:left;
+padding-left:3px;
+line-height:20px;
+}
+
+input{
+	
+}
+input.focus{
+	border:1px solid #a6a6a6;
+	background:#fffdd7;
+	height:16px;
+}
+input.blur{
+	border:1px solid #a6a6a6;
+	background:#FFFFFF; 
+	height:16px;
+}
+input.alert{
+	border:1px solid #DB1111; 
+	background:#FFC7C7;
+	line-height:16px;
+}
+input.checkbox{
+	border:0px;
+}
+input.radio{
+	border:0px;
+}
+textarea{
+	border:1px solid #a6a6a6; 
+	background:#FFFFFF; 
+	line-height:18px;
+}
+textarea.focus{
+	background:#fffdd7; 
+	border:1 solid #a6a6a6;
+}
+textarea.blur{
+	background:#FFFFFF; 
+	border:1 solid #a6a6a6;
+} 
+.contentList{
+	margin-top:10px;
+	}
+	
+	.tableborder1{
+border:solid 1px #CCCCCC;
+border-collapse:collapse;
+font-size:12px;
+}
+.tableborder1 td{ 
+border:solid 1px #CCCCCC;
+border-collapse:collapse;
+height:20px;
+padding-left:3px;
+font-family:"ËÎÌå", "Ó×Ô²";
+}
+.tableborder1 th{
+background:url(../images/thbg.png) repeat-x top;
+height:20px;
+font-weight:normal;
+border:solid 1px #CCCCCC;
+border-collapse:collapse;
+color:#490f00;
+text-align:left;
+padding-left:3px;
+line-height:20px;
+}
+
+img{
+   border:0px;
+}
+ul{
+	margin:0;
+	padding:0;
+	list-style:none;
+}
+:focus{
+	outline:0;
+	}
+a{
+	font-size:12px;
+	font-family:'ËÎÌå';
+	text-decoration:none;
+	color:#333;
+}
+a:link{
+	font-size:12px;
+	text-decoration:none;
+	color:#333;
+}
+a:hover{
+	font-size:12px;
+	text-decoration:none;
+	color:#15428B;
+}
+td{
+	line-height:18px;
+	font-size:12px;
+	color:#333;
+	font-family:'ËÎÌå';
+}

@@ -1,0 +1,42 @@
+/*====== Stylesheet for MzRotateImage ==*\
+     Object: MzRotateImage.css
+    Version: 1.0
+     Author: meizz
+Last Update: 2006-12-06
+\*======================================*/
+
+div.MzRotateImage{}
+
+div.MzRotateImage_ImageBox,
+div.MzRotateImage_ImageBox a,
+div.MzRotateImage_ImageBox div,
+div.MzRotateImage_ImageBox img
+{
+    margin: 0px;
+    padding: 0px;
+    border: none;
+}
+
+div.MzRotateImage_ControlBar
+{
+    z-index: 2;
+    margin-top: 1px;
+    text-align: right;
+    position: relative;
+}
+div.MzRotateImage_ControlBar input
+{
+    width: 18px;
+    height: 16px;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-size: 12px;
+    text-align: center;
+    background-color: #000000;
+    border: solid 0px #FFFFFF;
+    border-right: solid 1px #DDDDDD;
+}
+div.MzRotateImage_ControlBar input.active
+{
+    background-color: #CC0000;
+}

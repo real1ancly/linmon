@@ -1,0 +1,14 @@
+英文命名：                         相对应中文名称：
+//IP资源管理//
+edition_explain.png                版本说明.png ；
+res_view.png                       资源视图.png ；
+res_manage.png                     资源管理.png ；
+manipulate_log.png                 操作日志.png ；
+thing_auditing.png                 事物审核.png ；
+contrast_checkage.png              比对核查.png ；
+res_backup.png                     资源备份.png ；
+conflict_manage.png                冲突管理.png ；
+colligation_intercalate.png        绑定设置.png ；
+gather_intercalate.png             采集设置.png ；
+deregulation_affair.png            违规事件.png ；
+popedom_explain.png                权限说明.png ；

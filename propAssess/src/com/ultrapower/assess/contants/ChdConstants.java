@@ -1,0 +1,79 @@
+package com.ultrapower.assess.contants;
+
+import org.apache.xpath.operations.String;
+
+import com.bidlink.core.Constants;
+
+public class ChdConstants extends Constants {
+	
+	static {
+		init("resources/conf/constant.properties");
+	}
+
+	/**
+	 * 操作成功提示
+	 */
+	public final static String MSG_SUCCESS = getProperty("constant.msgSuccess","成功");
+
+	/**
+	 * 操作失败提示
+	 */
+	public final static String MSG_FAILURE = getProperty("constant.msgFailure","失败");
+
+	public final static String MSG_ENABLE = getProperty("constant.enable", "有效");
+
+	public final static String MSG_UNENABLE = getProperty("constant.unenable","无效");
+
+	/**
+	 * 属性之间分割符
+	 */
+	public final static String PRO_SPLIT_CHAR = getProperty("constant.proSplitChar", "***");
+
+	/**
+	 * 对象之间分割符
+	 */
+	public final static String Object_SPLIT_CHAR = getProperty("constant.objectSplitChar", "###");
+	
+	/**
+	 * 
+	 * @param key
+	 * @param defaultValue
+	 * @return
+	 */
+	public static String getProperty(String key, String defaultValue) {
+		return p.getProperty(key, defaultValue);
+	}
+
+	public final static String DIR_PATH = getProperty("constant.pic.dirPath", "");
+	public final static String HTTP_PATH = getProperty("constant.pic.httpPath", "");
+	public final static String BBS_PATH = getProperty("constant.bbs.urlPath", "");
+	
+	public final static String EMPTY_PATH = HTTP_PATH + "/images/empty.jpg";
+	
+	public final static String ALLOW_IPS = getProperty("constant.login.allow.ip", "");
+	/**
+	 * 上传的图片格式
+	 */
+	public final static String[] IMAGES_TYPE = {"jpeg","jpg", "bmp", "png"};
+	
+	
+	
+	
+	/**
+	 * 点号分隔
+	 */
+	public final static String DOT = ".";
+	
+	/**
+	 * 逗号分隔
+	 */
+	public final static String COMMA = ",";
+	
+	/**
+	 * 默认每页数量为10
+	 */
+	public final static int DEFAULT_PAGE_SIZE = 10;
+
+	
+
+}

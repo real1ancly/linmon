@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+    <!-- 定义 Commons-Validator Factory
+         注意:当前版本的springmodules, validatorFactory不能定义在bookstore-servlet-->
+    <bean id="validatorFactory" class="org.springmodules.validation.commons.DefaultValidatorFactory">
+        <property name="validationConfigLocations">
+            <list>
+                <value>classpath*:resources/conf/validator/validator-rules.xml</value>
+                <value>classpath*:resources/conf/validator/validator.xml</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- 用"validators"作id,方便autowire到 web controllers -->
+    <bean id="validators" class="org.springmodules.validation.commons.DefaultBeanValidator">
+        <property name="validatorFactory" ref="validatorFactory"/>
+    </bean>
+</beans>

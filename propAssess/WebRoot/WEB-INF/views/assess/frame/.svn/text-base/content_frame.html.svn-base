@@ -1,0 +1,15 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>index</title>
+</head>
+<HTML>
+
+<FRAMESET  COLS="210,*" border="2" framespacing="2" name="ContentFrm" id="ContentFrm">
+    <FRAME src="left.html" name="leftFrame" scrolling="no" frameborder="0" >
+    <FRAME src="content.html" scrolling="no" name="contentFrame" frameborder="0" >
+</FRAMESET>
+<noframes> <body>您的浏览器不支持HTML框架，请更换浏览器</body></noframes>
+</HTML>

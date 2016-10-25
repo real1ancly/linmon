@@ -1,0 +1,38 @@
+package com.ultrapower.assess.util.expression;
+
+public class Functions {
+
+	/**
+	 * 取指标值
+	 * @return
+	 */
+	public static Object getKpiValue(String kpiId,String ciId){
+		return null;
+	}
+	
+	/**
+	 * 省略小数位 使用方法:round(double)
+	 * 
+	 * @param d
+	 * @return
+	 */
+	public static Long round(double d) {
+		return Math.round(d);
+	}
+
+	/**
+	 * 省略小数后几位 使用方法:round(double,int)
+	 * 
+	 * @param d
+	 * @param w
+	 * @return
+	 */
+	public static Double round(double d, int w) {
+		String pattern = "0.";
+		for (int i = 0; i < w; i++) {
+			pattern += "0";
+		}
+		return Double.parseDouble(new java.text.DecimalFormat(pattern)
+				.format(d));
+	}
+}

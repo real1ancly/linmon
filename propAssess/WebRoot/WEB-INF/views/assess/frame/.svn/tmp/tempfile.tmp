@@ -1,0 +1,303 @@
+<!--propAssess\WebRoot\WEB-INF\views\template\addTemplate.jsp  -->
+<%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="menu" uri="http://struts-menu.sf.net/tag"%>
+<%@ taglib prefix="menu-el" uri="http://struts-menu.sf.net/tag-el"%>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="${rc.contextPath}/style/blue/othercommon/css/main.css" rel="stylesheet" type="text/css" />
+
+<link rel="stylesheet" type="text/css" href="${rc.contextPath}/css/jquery.multiselect.css" />
+<link rel="stylesheet" type="text/css" href="${rc.contextPath}/css/mutiselectstyle.css" />
+<link rel="stylesheet" type="text/css" href="${rc.contextPath}/css/prettify.css" />
+<link rel="stylesheet" type="text/css" href="${rc.contextPath}/css/jquery-ui.css" />
+
+
+<script src="${rc.contextPath}/scripts/date/WdatePicker.js"></script>
+<script src="${rc.contextPath}/js/main.js"></script>
+
+<script type="text/javascript" src="${rc.contextPath}/scripts/jquery.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
+<script type="text/javascript" src="${rc.contextPath}/scripts/prettify.js"></script>
+<script type="text/javascript" src="${rc.contextPath}/scripts/jquery.multiselect.js"></script>
+<script type="text/javascript"> 
+$(function(){
+	$("select").multiselect();
+});
+</script>
+<title>下发内容</title>
+<script language="javascript">
+function DateAdd(interval,number,date){
+        switch(interval.toLowerCase()){
+                case "y": return new Date(date.setFullYear(date.getFullYear()+number));
+                case "m": return new Date(date.setMonth(date.getMonth()+number));
+                case "d": return new Date(date.setDate(date.getDate()+number));
+                case "w": return new Date(date.setDate(date.getDate()+7*number));
+                case "h": return new Date(date.setHours(date.getHours()+number));
+                case "n": return new Date(date.setMinutes(date.getMinutes()+number));
+                case "s": return new Date(date.setSeconds(date.getSeconds()+number));
+                case "l": return new Date(date.setMilliseconds(date.getMilliseconds()+number));
+        } 
+}
+</script>
+<script language="javascript">
+window.onresize = function() {
+	setCenter(4,27);
+}
+window.onload = function() {
+	setCenter(4,27);
+}
+
+
+function showDIV(){
+    if(document.getElementsByName("choosetype")[0].checked){
+       document.getElementById("div1").style.display="";
+       document.getElementById("div2").style.display="none";
+    }else{
+       document.getElementById("div1").style.display="none";
+       document.getElementById("div2").style.display="";
+    }
+}
+
+      function checkOne1(cb){
+	   var obj= document.getElementsByName('rid');
+	   for(var i=0;i<obj.length;i++){
+	   if(obj[i]!=cb) obj[i].checked=false;
+	   else obj[i].checked=true;
+	   }
+	 	   }
+	   
+	   function checkOne(obj){
+	   var objs = document.getElementsByName('rid');
+	   for(var j=0;j<objs.length;j++){
+	   if(objs[j]!=obj) objs[j].checked=false;
+	   else objs[j].checked=true;
+	   }
+       var tdObj = obj.parentNode.parentNode;
+	   var tdLen = tdObj.children.length;
+	   for(var i=0;i<tdLen;i++){
+	   alert(tdObj.children[i].innerText );
+	   document.getElementsByName('an')[0].value=tdObj.children[1].innerText;
+	   document.getElementsByName('ct')[0].value=tdObj.children[2].innerText;
+	   document.getElementsByName('bt')[0].value=tdObj.children[3].innerText;
+	   document.getElementsByName('et')[0].value=tdObj.children[4].innerText;
+	   document.getElementsByName('pr')[0].value=tdObj.children[5].innerText;
+	   document.getElementsByName('rt')[0].value=tdObj.children[6].innerText;
+     }
+  }
+<<<<<<< .mine
+
+function   ChangeTxt(){
+			var a = document.getElementById("beginTime").value; 
+   			var b = document.form1.period;
+   			var ip = "";
+   			for(i=0;i<b.length;i++)
+　　			{
+     　　		if(b[i].checked)
+       　　		ip=b[i].value;
+　　			}
+   			
+   			if(a!=""&&i!=""&&ip!=""){
+   				if(ip == "2"){
+   				var dt = new Date(Date.parse(a.replace(/-/g,   "/")));
+   				///var dt = Date.parse(a.replace(/-/g,"/"));
+   				var newDate = DateAdd( "d",7,dt);
+   				var dd = newDate.toLocaleDateString()
+   				
+   				dd=dd.replace("年","-").replace("月","-").replace("日","");
+   				
+   				document.getElementById("endTime").innerText=dd;
+   				}
+   				if(ip == "3"){
+   				var dt = new Date(Date.parse(a.replace(/-/g,   "/")));
+   				var newDate = DateAdd( "m",1,dt);
+   				var dd = newDate.toLocaleDateString();
+   				
+   				dd=dd.replace("年","-").replace("月","-").replace("日","");
+   				
+   				document.getElementById("endTime").innerText=dd;
+   				}
+   			}
+}
+=======
+  
+  function calibrationfrom2(){
+     var selobj = document.getElementsByName('objectCode2')[0].value;
+     if(selobj==''){
+       alert("请选择考核对象!");
+     }
+     
+  
+  }
+>>>>>>> .r6587
+</script>
+
+</head>
+<body >
+<div class="content">
+<div class="content_title_bg">
+<div class="content_title">当前位置：模板下发 >> 下发</div>
+</div>
+
+<div style="height:100%;overflow:auto;width:90%;padding:0px;" id="center" >
+ <table  border="0" cellpadding="5" cellspacing="0" width="98%"  id="tab" style=" margin:10px 10px 0 10px;">
+    <tr>
+    	<td colspan="3"><div style="margin-left:5px;">选择下发模板类型 <input type="radio" name="choosetype"  checked onclick="showDIV();">新建考核 <input type="radio" name="choosetype"  onclick="showDIV();">选择已有考核</td></div></td>
+    </tr>
+ </table>
+<div name="div1" id="div1" style="display:''"> <!-- 新建考核 -->
+<form name="form1" action="assessTemp.do?method=addassessRecords" method="post">
+    <input type=hidden name=assessTempId value="${assessTempId}">
+    <table class="tableborder" border="0" cellpadding="5" cellspacing="0" width="98%"  id="tab" style=" margin:10px 10px 0 10px;">
+    <tr>
+    	<td colspan="3"><div style="margin-left:5px;">下发内容：此处展示下发内容注意事项</div></td>
+    </tr>
+    <tr>
+    	<td width="30%" align="right">考核对象选择：</td>
+    	<td><!--  <select name=objectCode><option>--请选择考核对象--</option>-->
+    	
+		<select title="objectCode" multiple="multiple" name="objectCode" size="5">
+    	<c:forEach items="${assessObj}" var="assessObj">
+		  <option value ="${assessObj.id}">
+            ${assessObj.objectName}
+          </option>
+       
+	     </c:forEach>
+         </select></td>
+    </tr>
+    <tr>
+    	<td align="right">考核周期：</td>
+<<<<<<< .mine
+    	<td><input type="radio" name="period" value="2" onchange="ChangeTxt();">周
+    		<input type="radio" name="period" value="3" onchange="ChangeTxt();" checked>月 </td>
+=======
+    	<td><input type="radio" name="period" value="2" checked>周<input type="radio" name="period" value="3" >月 </td>
+>>>>>>> .r6587
+    </tr>
+    <tr> 
+    	<td align="right">考核名称：</td>
+   		<td><input class="blur" id="assessName" type="text" name='assessName'  maxlength="50" value=""   /></td>
+   		
+   		
+    </tr>
+    <tr> 
+    	<td align="right">考核开始时间：</td>
+   		<td><input class="blur" id="beginTime" onchange="ChangeTxt();" type="text" name='beginTime'  maxlength="50" value=""   />
+   		<img onclick="WdatePicker({el:$dp.$('beginTime')});" src="${rc.contextPath}/images/datePicker.gif" width="16" height="22" align="absmiddle" ></td>
+   		
+    </tr>
+     <tr> 
+    	<td align="right">考核结束时间：</td>
+   		<td>
+   		<input class="blur" id="endTime" type="text" name="endTime" value="" maxlength="50" /></td>
+    </tr>
+    <tr> 
+    	<td align="right">考核结果生成时间：</td>
+   		<td><input class="blur" id="resultCreatTime" type="text" name="resultcreatTime" value="" maxlength="50" />
+   		<img onclick="WdatePicker({el:$dp.$('resultCreatTime')});" src="${rc.contextPath}/images/datePicker.gif" width="16" height="22" align="absmiddle"></td>
+    </tr>
+   </table>
+<table width="99%" class="button_bar"  >
+        <tr>
+         <td align="center">                      
+         <input type="submit" value="提交" class="button"
+         onmouseover="this.className='buttonhover'"   onmouseout="this.className='button'"/>
+         <input type="reset" value="重置"  class="button"
+         onmouseover="this.className='buttonhover'"   onmouseout="this.className='button'"/>
+         <input type="button" value="返回"  class="button"
+         onmouseover="this.className='buttonhover'"   onmouseout="this.className='button'"/>
+		</td>
+        </tr>
+       </table>
+       </form>
+</div>
+<div name="div2" style="display:none"  id="div2" class="contentList" > <!-- 选择已有考核 -->
+
+<form action="assessTemp.do?method=addAssess" method="post" >
+ <input type=hidden name=assessTempId value="${assessTempId}">
+   <input type=hidden name="an" value="">
+   <input type=hidden name="ct" value="">
+   <input type=hidden name="bt" value="">
+   <input type=hidden name="et" value="">
+   <input type=hidden name="pr" value="">  
+   <input type=hidden name="rt" value="">    
+    <table width="97%" border="0" cellpadding="0" cellspacing="0" class="tableborder"  id="tab" style="margin-left:5px;" align="center">
+     <tr>
+    	<td colspan=5"><div style="margin-left:5px;">选择考核：此处展示已有考核</div></td>
+    </tr>
+    <tr>
+<<<<<<< .mine
+    	<td width="30%" align="right">考核对象选择：</td>
+    	<td colspan=5"><select name=objectCode>
+=======
+    	<td width="20%" align="right">考核对象选择：</td>
+    	<td colspan=7"><select name=objectCode2><option value="">--请选择考核对象--</option>
+>>>>>>> .r6587
+    	<c:forEach items="${assessObj}" var="assessObj">
+		  <option value ="${assessObj.id}">
+            ${assessObj.objectName}
+          </option>
+       
+	     </c:forEach>
+         </select></td>
+    </tr>
+     <tr>
+   <td></td> 
+   <td align="left">考核名称</td>
+   <td align="left">考核创建时间</td>
+   <td align="left">考核开始时间</td>
+   <td align="left">考核结束时间</td>
+   <td align="left">考核周期</td>
+   <td align="left">考核结果生成时间</td>
+   </tr>
+  
+   <c:forEach items="${anlist}" var="anlist">
+   <tr> 
+        
+        <td><input type="checkbox" name="rid" id="checkbox2" onclick ="checkOne(this)"  value=""/></td>
+    	<td  align="left">${anlist[0]}</td>  
+    	<td align="left"> ${anlist[1]}</td>
+    	<td align="left"> ${anlist[2]}</td>
+        <td align="left"> ${anlist[3]}</td>
+        <td align="left"> 
+        <script type="text/javascript">
+	               var a = ${anlist[4]}
+					
+					if(a==2){
+					document.write("周");
+					}
+					if(a == 3){
+					document.write("月");
+					}
+		</script>
+        </td>
+        <td align="left"> ${anlist[5]}</td>
+        
+      </c:forEach>
+    </tr>
+   </table>
+<table width="99%" class="button_bar">
+        <tr>
+         <td align="center">                      
+        <input type="submit" value="提交" class="button"
+         onmouseover="this.className='buttonhover'"   onmouseout="this.className='button'" onclick="calibrationfrom2();"/>
+        <input type="reset" value="重置"  class="button"
+         onmouseover="this.className='buttonhover'"   onmouseout="this.className='button'"/>
+        <input type="button" value="返回"  class="button"
+         onmouseover="this.className='buttonhover'"   onmouseout="this.className='button'"/>
+         
+        </td>
+        </tr>
+       </table>
+       </form>
+</div>
+</div>
+
+</div>
+</body>
+</html>
+

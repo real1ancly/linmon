@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE form-validation PUBLIC
+        "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.3.0//EN"
+        "http://jakarta.apache.org/commons/dtds/validator_1_3_0.dtd">
+<!-- 定义  Commons-Validator 使用的Meta-Data -->
+<form-validation>
+    <global>
+		<constant>
+			<constant-name>number_format</constant-name>
+			<constant-value>^[0-9]*$</constant-value>
+		</constant>
+	</global>
+	<formset> 
+	    <form name="baseUser">
+	        <field property="userId" depends="required,maxlength">
+				<arg position="0" key="baseUser.userId" />
+				<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>100</var-value>
+				</var>
+			</field>
+			<field property="password" depends="required,minlength">
+				<arg position="0" key="baseUser.password" />
+				<arg position="1" name="minlength" key="${var:minlength}" resource="false" />
+				<var>
+					<var-name>minlength</var-name>
+					<var-value>6</var-value>
+				</var>
+			</field>
+	        <field property="companyNameCn" depends="required">
+				<arg position="0" key="baseUser.companyNameCn" />
+			</field>
+			<field property="companyNameEn" depends="required">
+				<arg position="0" key="baseUser.companyNameEn" />
+			</field>
+			<field property="addressCn" depends="required">
+				<arg position="0" key="baseUser.addressCn" />
+			</field>
+		    <field property="juriPersonCn" depends="required">
+				<arg position="0" key="baseUser.juriPersonCn" />
+			</field>
+			<field property="wpTelCty" depends="required,mask">
+				<arg position="0" key="baseUser.wpTelCty" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${number_format}</var-value>
+				</var>
+			</field>
+			<field property="wpTelPrv" depends="required,mask">
+				<arg position="0" key="baseUser.wpTelPrv" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${number_format}</var-value>
+				</var>
+			</field>
+			<field property="wpTelNum" depends="required,mask">
+				<arg position="0" key="baseUser.wpTelNum" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${number_format}</var-value>
+				</var>
+			</field>	
+			<field property="wpTelExt" depends="mask">
+				<arg position="0" key="baseUser.wpTelExt" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${number_format}</var-value>
+				</var>
+			</field>
+			<field property="bornYear" depends="mask">
+				<arg position="0" key="baseUser.bornYear" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${number_format}</var-value>
+				</var>
+			</field>
+			<field property="bornMonth" depends="mask">
+				<arg position="0" key="baseUser.bornMonth" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${number_format}</var-value>
+				</var>
+			</field>	
+			<field property="bornDay" depends="mask">
+				<arg position="0" key="baseUser.bornDay" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${number_format}</var-value>
+				</var>
+			</field>	
+			<field property="writePerson" depends="required">
+				<arg position="0" key="baseUser.writePerson" />
+			</field>
+			<field property="linkManCn" depends="required">		
+			    <arg position="0" key="baseUser.linkManCn" />	
+			</field>	
+			<field property="linkManEn" depends="required">		
+			    <arg position="0" key="baseUser.linkManEn" />	
+			</field>
+			<field property="telCty" depends="required,mask">		
+			    <arg position="0" key="baseUser.telCty" />	
+			    <var>
+					<var-name>mask</var-name>
+					<var-value>${number_format}</var-value>
+				</var>
+			</field>
+			<field property="telPrv" depends="required,mask">		
+			    <arg position="0" key="baseUser.telPrv" />	
+			    <var>
+					<var-name>mask</var-name>
+					<var-value>${number_format}</var-value>
+				</var>
+			</field>	
+			<field property="telNum" depends="required,mask">		
+			    <arg position="0" key="baseUser.telNum" />	
+			    <var>
+					<var-name>mask</var-name>
+					<var-value>${number_format}</var-value>
+				</var>
+			</field>
+			<field property="telExt" depends="mask">		
+			    <arg position="0" key="baseUser.telExt" />
+			    <var>
+					<var-name>mask</var-name>
+					<var-value>${number_format}</var-value>
+				</var>	
+			</field>			
+			<field property="faxCty" depends="required,mask">		
+			    <arg position="0" key="baseUser.faxCty" />	
+			    <var>
+					<var-name>mask</var-name>
+					<var-value>${number_format}</var-value>
+				</var>	
+			</field>
+			<field property="faxPrv" depends="required,mask">		
+			    <arg position="0" key="baseUser.faxPrv" />
+			    <var>
+					<var-name>mask</var-name>
+					<var-value>${number_format}</var-value>
+				</var>	
+			</field>	
+			<field property="faxNum" depends="required,mask">		
+			    <arg position="0" key="baseUser.faxNum" />	
+			    <var>
+					<var-name>mask</var-name>
+					<var-value>${number_format}</var-value>
+				</var>	
+			</field>
+			<field property="faxExt" depends="mask">		
+			    <arg position="0" key="baseUser.faxExt" />	
+			    <var>
+					<var-name>mask</var-name>
+					<var-value>${number_format}</var-value>
+				</var>	
+			</field>
+			<field property="linkManEmail" depends="required,email">		
+			    <arg position="0" key="baseUser.linkManEmail" />	
+			</field> 
+			<field property="linkManEmailBak" depends="required,email">		
+			    <arg position="0" key="baseUser.linkManEmailBak" />	
+			</field>
+	    </form>
+		<form name="companyUser" extends="baseUser">
+		    <field property="postCode" depends="required,mask">
+				<arg position="0" key="baseUser.postCode" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${number_format}</var-value>
+				</var>	
+			</field> 
+			<field property="productSale" depends="required">
+				<arg position="0" key="companyUser.productSale" />
+			</field>
+		</form>
+		<form name="organUser" extends="baseUser">
+			<field property="juriPersonEn" depends="required">
+				<arg position="0" key="baseUser.juriPersonEn" />
+			</field>
+			<field property="openBankCn" depends="required">
+				<arg position="0" key="organUser.openBankCn" />
+			</field>	
+			<field property="openBankAccountCn" depends="required">
+				<arg position="0" key="organUser.openBankAccountCn" />
+			</field>	
+			<field property="issueWay" depends="required">
+				<arg position="0" key="organUser.issueWay" />
+			</field>					 
+		</form>
+		<form name="pubBidInfo">
+			<field property="linkMan" depends="required">
+				<arg position="0" key="pubBidInfo.linkMan" />
+			</field>
+			<field property="linkTel" depends="required">
+				<arg position="0" key="pubBidInfo.linkTel" />
+			</field>	
+			<field property="company" depends="required">
+				<arg position="0" key="pubBidInfo.company" />
+			</field>	
+			<field property="email" depends="required">
+				<arg position="0" key="pubBidInfo.email" />
+			</field>
+			<field property="title" depends="required">
+				<arg position="0" key="pubBidInfo.title" />
+			</field>
+			<field property="content" depends="required">
+				<arg position="0" key="pubBidInfo.content" />
+			</field>					 
+		</form>
+		<!-- 英文网用户注册 -->
+		<form name="enUserRegister" >
+	        <field property="userId" depends="required,maxlength">
+				<arg position="0" key="enUser.userId" />
+				<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>20</var-value>
+				</var>
+			</field>
+			<field property="password" depends="required,minlength">
+				<arg position="0" key="enUser.password" />
+				<arg position="1" name="minlength" key="${var:minlength}" resource="false" />
+				<var>
+					<var-name>minlength</var-name>
+					<var-value>6</var-value>
+				</var>
+			</field>
+			<field property="confirmPassword" depends="required,minlength">
+				<arg position="0" key="enUser.confirmPassword" />
+				<arg position="1" name="minlength" key="${var:minlength}" resource="false" />
+				<var>
+					<var-name>minlength</var-name>
+					<var-value>6</var-value>
+				</var>
+			</field>
+			<field property="linkManEn" depends="required">		
+			    <arg position="0" key="enUser.linkManEn" />	
+			</field>
+			<field property="linkManEmail" depends="required,email">		
+			    <arg position="0" key="enUser.linkManEmail" />	
+			</field> 
+			<field property="linkManEmailBak" depends="required,email">		
+			    <arg position="0" key="enUser.linkManEmailBak" />	
+			</field>
+			<field property="telCty" depends="required,mask">		
+			    <arg position="0" key="enUser.telCty" />	
+			    <var>
+					<var-name>mask</var-name>
+					<var-value>${number_format}</var-value>
+				</var>
+			</field>
+			<field property="telPrv" depends="required,mask">		
+			    <arg position="0" key="enUser.telPrv" />	
+			    <var>
+					<var-name>mask</var-name>
+					<var-value>${number_format}</var-value>
+				</var>
+			</field>	
+			<field property="telNum" depends="required,mask">		
+			    <arg position="0" key="enUser.telNum" />	
+			    <var>
+					<var-name>mask</var-name>
+					<var-value>${number_format}</var-value>
+				</var>
+			</field>
+			<field property="telExt" depends="mask">		
+			    <arg position="0" key="enUser.telExt" />
+			    <var>
+					<var-name>mask</var-name>
+					<var-value>${number_format}</var-value>
+				</var>	
+			</field>			
+			<field property="faxCty" depends="required,mask">		
+			    <arg position="0" key="enUser.faxCty" />	
+			    <var>
+					<var-name>mask</var-name>
+					<var-value>${number_format}</var-value>
+				</var>	
+			</field>
+			<field property="faxPrv" depends="required,mask">		
+			    <arg position="0" key="enUser.faxPrv" />
+			    <var>
+					<var-name>mask</var-name>
+					<var-value>${number_format}</var-value>
+				</var>	
+			</field>	
+			<field property="faxNum" depends="required,mask">		
+			    <arg position="0" key="enUser.faxNum" />	
+			    <var>
+					<var-name>mask</var-name>
+					<var-value>${number_format}</var-value>
+				</var>	
+			</field>
+			<field property="faxExt" depends="mask">		
+			    <arg position="0" key="enUser.faxExt" />	
+			    <var>
+					<var-name>mask</var-name>
+					<var-value>${number_format}</var-value>
+				</var>	
+			</field>
+		    <field property="juriPersonEn" depends="required">
+				<arg position="0" key="enUser.juriPersonEn" />
+			</field>
+			<field property="companyNameEn" depends="required">
+				<arg position="0" key="enUser.companyNameEn" />
+			</field>
+		    <field property="productSale" depends="required">
+				<arg position="0" key="enUser.productSale" />
+			</field>
+			<field property="addressEn" depends="required">
+				<arg position="0" key="enUser.addressEn" />
+			</field>
+	    </form>
+	    <!-- 英文网修改注册信息 -->
+	    <form name="enModUserRegister" >
+	        <field property="userId" depends="required,maxlength">
+				<arg position="0" key="enUser.userId" />
+				<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>20</var-value>
+				</var>
+			</field>
+			<field property="linkManEn" depends="required">		
+			    <arg position="0" key="enUser.linkManEn" />	
+			</field>
+			<field property="linkManEmail" depends="required,email">		
+			    <arg position="0" key="enUser.linkManEmail" />	
+			</field> 
+			<field property="linkManEmailBak" depends="required,email">		
+			    <arg position="0" key="enUser.linkManEmailBak" />	
+			</field>
+			<field property="telCty" depends="required,mask">		
+			    <arg position="0" key="enUser.telCty" />	
+			    <var>
+					<var-name>mask</var-name>
+					<var-value>${number_format}</var-value>
+				</var>
+			</field>
+			<field property="telPrv" depends="required,mask">		
+			    <arg position="0" key="enUser.telPrv" />	
+			    <var>
+					<var-name>mask</var-name>
+					<var-value>${number_format}</var-value>
+				</var>
+			</field>	
+			<field property="telNum" depends="required,mask">		
+			    <arg position="0" key="enUser.telNum" />	
+			    <var>
+					<var-name>mask</var-name>
+					<var-value>${number_format}</var-value>
+				</var>
+			</field>
+			<field property="telExt" depends="mask">		
+			    <arg position="0" key="enUser.telExt" />
+			    <var>
+					<var-name>mask</var-name>
+					<var-value>${number_format}</var-value>
+				</var>	
+			</field>			
+			<field property="faxCty" depends="required,mask">		
+			    <arg position="0" key="enUser.faxCty" />	
+			    <var>
+					<var-name>mask</var-name>
+					<var-value>${number_format}</var-value>
+				</var>	
+			</field>
+			<field property="faxPrv" depends="required,mask">		
+			    <arg position="0" key="enUser.faxPrv" />
+			    <var>
+					<var-name>mask</var-name>
+					<var-value>${number_format}</var-value>
+				</var>	
+			</field>	
+			<field property="faxNum" depends="required,mask">		
+			    <arg position="0" key="enUser.faxNum" />	
+			    <var>
+					<var-name>mask</var-name>
+					<var-value>${number_format}</var-value>
+				</var>	
+			</field>
+			<field property="faxExt" depends="mask">		
+			    <arg position="0" key="enUser.faxExt" />	
+			    <var>
+					<var-name>mask</var-name>
+					<var-value>${number_format}</var-value>
+				</var>	
+			</field>
+		    <field property="juriPersonEn" depends="required">
+				<arg position="0" key="enUser.juriPersonEn" />
+			</field>
+			<field property="companyNameEn" depends="required">
+				<arg position="0" key="enUser.companyNameEn" />
+			</field>
+		    <field property="productSale" depends="required">
+				<arg position="0" key="enUser.productSale" />
+			</field>
+			<field property="addressEn" depends="required">
+				<arg position="0" key="enUser.addressEn" />
+			</field>
+	    </form>
+	    <!-- 英文版邮件订制 -->
+	    <form name="emailOrderForm" >
+	        <field property="email" depends="required,email">
+				<arg position="0" key="enEmail.email" />	
+			</field>
+			<field property="bakemail" depends="email">
+				<arg position="0" key="enEmail.bakemail" />	
+			</field> 
+	    </form>
+	    
+	</formset>
+</form-validation>
